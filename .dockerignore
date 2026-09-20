@@ -1,0 +1,8 @@
+.env
+.env.docker
+venv/
+data/
+*.db
+terraform/
+.git/
+__pycache__/

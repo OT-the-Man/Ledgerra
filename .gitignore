@@ -6,3 +6,6 @@ data/
 *.db
 *.xlsx
 *.pbix
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup

@@ -1,9 +1,6 @@
 # Ledgerra
 
-Code/data workspace for this project (formerly "Africa Data Bank Pipeline"). Plan, phase checklist, and progress log live in Obsidian:
-`G:\My Drive\Second Brain AI\Academics\Ledgerra - Project Log.md`
-
-Update that vault note (not just this folder) at the end of each phase — it's the source for the final write-up.
+Data pipeline over African economic indicators (World Bank, IMF and others, pulled through one API). Formerly "Africa Data Bank Pipeline". The plan, phase checklist and progress log are kept in a private notes vault.
 
 ## Phases
 0. Setup — API key, environment, first raw pull

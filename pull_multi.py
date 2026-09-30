@@ -11,7 +11,7 @@ API_KEY = os.getenv("AFRICA_DB_API_KEY")
 BASE_URL = "https://api.africadb.com/api/v1"
 headers = {"Authorization": f"Bearer {API_KEY}"}
 s3 = boto3.client("s3")
-BUCKET = "ledgerra-raw-data-521909294295"
+BUCKET = os.environ["LEDGERRA_BUCKET"]
 today = date.today().isoformat()
 
 countries = ["GH", "NG", "CI", "SN", "ML"]

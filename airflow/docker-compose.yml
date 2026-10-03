@@ -1,0 +1,30 @@
+name: ledgerra-airflow
+
+services:
+  airflow:
+    image: apache/airflow:3.3.2-python3.12
+    container_name: airflow
+    command: standalone
+    ports:
+      - "127.0.0.1:8080:8080"
+    mem_limit: 2500m
+    env_file:
+      - ../.env.docker
+    environment:
+      AIRFLOW__CORE__PARALLELISM: "4"
+    volumes:
+      - airflow_home:/opt/airflow
+      - ./dags:/opt/airflow/dags
+      - type: tmpfs
+        target: /opt/airflow/project
+        tmpfs:
+          size: 67108864
+          mode: 0o1777
+      - ../data:/opt/airflow/project/data
+      - ../pull_multi.py:/opt/airflow/project/pull_multi.py:ro
+      - ../load_all_to_sqlite.py:/opt/airflow/project/load_all_to_sqlite.py:ro
+      - ../phase1_analysis.py:/opt/airflow/project/phase1_analysis.py:ro
+      - ../phase2_analysis.py:/opt/airflow/project/phase2_analysis.py:ro
+
+volumes:
+  airflow_home:

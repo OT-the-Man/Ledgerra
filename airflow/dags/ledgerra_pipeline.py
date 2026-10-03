@@ -9,7 +9,8 @@ with DAG(
     dag_id="ledgerra_pipeline",
     description="Pull Africa Data Bank series, archive to S3, load to SQLite, run the analysis",
     start_date=datetime(2026, 10, 1),
-    schedule=None,
+    schedule="0 6 * * *",  # daily at 06:00 UTC
+    max_active_runs=1,
     catchup=False,
     default_args={"retries": 0},
     tags=["ledgerra"],

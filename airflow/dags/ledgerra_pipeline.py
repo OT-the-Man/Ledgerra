@@ -14,7 +14,9 @@ with DAG(
     default_args={"retries": 0},
     tags=["ledgerra"],
 ) as dag:
-    pull = BashOperator(task_id="pull", bash_command="python pull_multi.py", cwd=PROJECT)
+    # pull_multi.py exits 99 when nothing was fetched only because of the API quota:
+    # show that as Skipped (so load/analysis don't run on stale data), not as a green Success.
+    pull = BashOperator(task_id="pull", bash_command="python pull_multi.py", cwd=PROJECT, skip_on_exit_code=99)
     load = BashOperator(task_id="load", bash_command="python load_all_to_sqlite.py", cwd=PROJECT)
     phase1 = BashOperator(task_id="phase1_analysis", bash_command="python phase1_analysis.py", cwd=PROJECT)
     phase2 = BashOperator(task_id="phase2_analysis", bash_command="python phase2_analysis.py", cwd=PROJECT)
